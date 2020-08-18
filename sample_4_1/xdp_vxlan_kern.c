@@ -49,7 +49,7 @@ static inline int parse_ipv4(void *data, __u64 *nh_off, void *data_end,
 
 /* Parse UDP packet to get source port, destination port and UDP header size */
 static inline int parse_udp(void *data, __u64 th_off, void *data_end,
-			     __be16 *src, __be16 *dest)
+			     __be16 *src_port, __be16 *dest_port)
 {
 	struct udphdr *uh = data + th_off;
 
@@ -60,8 +60,8 @@ static inline int parse_udp(void *data, __u64 th_off, void *data_end,
 	if (uh->check)
 		return 0;
 
-	*src = uh->source;
-	*dest = uh->dest;
+	*src_port = uh->source;
+	*dest_port = uh->dest;
 	return __constant_ntohs(uh->len);
 }
 
