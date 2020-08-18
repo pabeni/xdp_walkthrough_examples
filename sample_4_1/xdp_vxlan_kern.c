@@ -47,7 +47,7 @@ static inline int parse_ipv4(void *data, __u64 *nh_off, void *data_end,
 	return iph->protocol;
 }
 
-/* Parse IPV4 packet to get SRC, DST IP and protocol */
+/* Parse UDP packet to get source port, destination port and UDP header size */
 static inline int parse_udp(void *data, __u64 th_off, void *data_end,
 			     __be16 *src, __be16 *dest)
 {
